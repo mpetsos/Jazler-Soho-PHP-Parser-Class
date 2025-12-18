@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jazler with API Data</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen flex items-center justify-center p-6">
+
+  <div id="music-info" class="w-full max-w-5xl bg-white shadow-lg rounded-2xl p-6 space-y-8">
+    <div class="text-center text-gray-500">Loading…</div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal-overlay" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+    <div id="modal-box" class="bg-white rounded-xl max-w-3xl w-11/12 p-5 relative shadow-xl overflow-y-auto max-h-[80vh]">
+      <button id="modal-close" class="absolute top-3 right-4 text-gray-500 hover:text-black text-2xl">&times;</button>
+      <h3 id="modal-title" class="text-lg font-semibold text-indigo-600 mb-3"></h3>
+      <div id="modal-content" class="text-sm text-gray-700 leading-relaxed"></div>
+    </div>
+  </div>
+
+  <script>
+    let countdownInterval;
+    const defaultImage = "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg";
+
+    // --- Modal ---
+    const modalOverlay = document.getElementById("modal-overlay");
+    const modalTitle   = document.getElementById("modal-title");
+    const modalContent = document.getElementById("modal-content");
+    const modalClose   = document.getElementById("modal-close");
+
+    function openModal(title, html) {
+      modalTitle.textContent = title;
+      modalContent.innerHTML = html;
+      modalOverlay.classList.remove("hidden");
+      modalOverlay.classList.add("flex");
+    }
+    function closeModal() {
+      modalOverlay.classList.add("hidden");
+      modalOverlay.classList.remove("flex");
+    }
+    modalClose.onclick = closeModal;
+    modalOverlay.onclick = (e)=>{ if(e.target===modalOverlay) closeModal(); };
+
+    // --- Helpers ---
+    function formatTime(sec) {
+      if (sec < 0) sec = 0;
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;
+    }
+
+    async function fetchData() {
+      try {
+        const res = await fetch("jazler_api_json.php?rand=" + Math.random(), { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to fetch JSON");
+        const json = await res.json();
+        render(json);
+      } catch (e) {
+        console.error(e);
+        document.getElementById("music-info").innerHTML =
+          "<div class='text-center text-red-600'>Error loading data</div>";
+        setTimeout(fetchData, 30000);
+      }
+    }
+
+    function render(json) {
+      const wrap = document.getElementById("music-info");
+      wrap.innerHTML = "";
+      const now = json.now_playing || {};
+      const history = Array.isArray(json.history) ? json.history : Object.values(json.history || {});
+      const next = Array.isArray(json.next) ? json.next : Object.values(json.next || {});
+
+      // Use time_remain directly from JSON
+      let remain = now.time_remain || 0;console.log(remain);
+
+      const modalData = {};
+      function registerModal(id, title, html) {
+        modalData[id] = { title, html };
+        return id;
+      }
+      window.showModal = function (id) {
+        const data = modalData[id];
+        if (data) openModal(data.title, data.html);
+      };
+
+      function songCard(song, section) {
+        const idBio = song.artist_bio
+          ? registerModal(`bio-${Math.random()}`, `Biography of ${song.artist || "Unknown"}`, song.artist_bio)
+          : null;
+        const idLyr = song.song_lyrics
+          ? registerModal(`lyr-${Math.random()}`, `Lyrics for ${song.title || ""} – ${song.artist || ""}`, song.song_lyrics)
+          : null;
+        const bioBtn = idBio
+          ? `<button class="px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-700 hover:bg-indigo-200" onclick="showModal('${idBio}')">Biography</button>`
+          : "";
+        const lyrBtn = idLyr
+          ? `<button class="px-2 py-1 text-xs rounded bg-pink-100 text-pink-700 hover:bg-pink-200" onclick="showModal('${idLyr}')">Lyrics</button>`
+          : "";
+        const time = song.start_time
+          ? `${section === "next" ? "Starts" : "Played"} at: ${song.start_time} (${song.duration || ""})`
+          : "";
+        return `
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-3 hover:bg-gray-100 transition">
+            <div class="flex items-center gap-3">
+              <img src="${song.artist_image || defaultImage}" class="w-14 h-14 rounded-full object-cover border" alt="">
+              <div>
+                <div class="font-medium">${song.title || "—"}</div>
+                <div class="text-sm text-gray-600">${song.artist || ""}</div>
+                ${time ? `<div class="text-xs text-gray-400">${time}</div>` : ""}
+                ${bioBtn || lyrBtn ? `<div class="flex gap-2 mt-1">${bioBtn}${lyrBtn}</div>` : ""}
+              </div>
+            </div>
+          </div>`;
+      }
+
+      const nowBio = now.artist_bio
+        ? registerModal(`bio-now`, `Biography of ${now.artist || "Unknown"}`, now.artist_bio)
+        : null;
+      const nowLyr = now.song_lyrics
+        ? registerModal(`lyr-now`, `Lyrics for ${now.title || ""} – ${now.artist || ""}`, now.song_lyrics)
+        : null;
+
+      const nowHTML = `
+        <section class="text-center">
+          <h2 class="text-2xl font-bold text-indigo-600 mb-4">🎵 Now Playing</h2>
+          <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-5 shadow-sm">
+            <img src="${now.artist_image || defaultImage}" class="w-36 h-36 mx-auto rounded-full object-cover shadow mb-3" alt="">
+            <div class="text-xl font-semibold">${now.title || "—"}</div>
+            <div class="text-gray-600 mb-1">${now.artist || ""}</div>
+            <div class="text-sm text-gray-500">🕒 ${now.start_time || "--:--"}–${now.end_time || "--:--"} (${now.duration || "00:00"})</div>
+            <div id="countdown" class="mt-2 text-indigo-700 font-mono text-base"></div>
+            <div class="mt-2 flex justify-center gap-2">
+              ${nowBio ? `<button class="px-3 py-1 text-xs bg-indigo-100 text-indigo-700 rounded hover:bg-indigo-200" onclick="showModal('${nowBio}')">Biography</button>` : ""}
+              ${nowLyr ? `<button class="px-3 py-1 text-xs bg-pink-100 text-pink-700 rounded hover:bg-pink-200" onclick="showModal('${nowLyr}')">Lyrics</button>` : ""}
+            </div>
+          </div>
+        </section>`;
+
+      const nextHTML = `
+        <section>
+          <h2 class="text-lg font-semibold text-gray-700 mb-2">⏩ Coming Up Next</h2>
+          <div class="grid gap-2">
+            ${next.map((s) => songCard(s, "next")).join("")}
+          </div>
+        </section>`;
+
+      const histHTML = `
+        <section>
+          <h2 class="text-lg font-semibold text-gray-700 mb-2">⏪ Previously Played</h2>
+          <div class="grid gap-2">
+            ${history.map((s) => songCard(s, "history")).join("")}
+          </div>
+        </section>`;
+
+      wrap.innerHTML = nowHTML + nextHTML + histHTML;
+
+      // --- Countdown ---
+      const countdownEl = document.getElementById("countdown");
+      clearInterval(countdownInterval);
+
+      function tick() {
+        countdownEl.textContent = `⏳ Remaining: ${formatTime(remain)}`;
+        remain--;
+        if(remain < 0){
+          clearInterval(countdownInterval);
+          countdownEl.textContent = "🔄 Refreshing...";
+          fetchData();
+        }
+      }
+
+      tick();
+      countdownInterval = setInterval(tick, 1000);
+    }
+
+    fetchData();
+  </script>
+
+</body>
+</html>
