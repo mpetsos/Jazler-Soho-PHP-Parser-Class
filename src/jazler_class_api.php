@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Jazler Soho PHP Class Parser V1.0 (with greek-radios.gr API)
+ * Author: Webat.gr
+ * Description: Parses Jazler SOHO XML data files and merges them into a unified array.
+ * Requirements: PHP 8+, cURL, SimpleXML
+ */
 class jazlerClassWithAPI {
 	
 	/**
@@ -194,3 +199,4 @@ class jazlerClassWithAPI {
 	}
 	
 }
+
