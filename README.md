@@ -147,7 +147,7 @@ $data = $jClass->jazlerMerge(
 
 ---
 
-<table>
+<table width="100%">
 <tr>
 <td width="100%" valign="top">
 
