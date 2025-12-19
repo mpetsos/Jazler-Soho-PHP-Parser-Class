@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Jazler Soho PHP Class Parser V1.0
+ * Author: Webat.gr
+ * Description: Parses Jazler SOHO XML data files and merges them into a unified array.
+ * Requirements: PHP 8+, cURL, SimpleXML
+ */
 class jazlerClass {
 	
 	/**
@@ -139,4 +144,5 @@ class jazlerClass {
 	}
 	
 }
+
 
