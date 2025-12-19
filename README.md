@@ -68,9 +68,9 @@ This PHP class reads those XML files and outputs an **array** with all the data,
 
 ---
 
-<table>
+<table width="100%">
 <tr>
-<td width="50%" valign="top">
+<td width="100%" valign="top">
 
 ## 💻 Example Usage
 
