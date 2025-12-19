@@ -241,7 +241,7 @@ For more information about the **Greek-Radios.gr API**, visit:
 
 ---
 
-**Author:** Greek-Radios.gr  
+**Author:** Webat.gr  
 **Version:** 1.0  
 **Language:** PHP 8+  
 **Website:** [https://www.webat.gr](https://www.webat.gr)
