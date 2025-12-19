@@ -149,15 +149,7 @@ $data = $jClass->jazlerMerge(
 
 <table>
 <tr>
-<td width="50%" valign="top">
-
-## 🧩 Demo
-
-- [Default Class Demo](https://www.greek-radios.gr/jazler/tests/jazler.html)  
-- [Class + API Demo](https://www.greek-radios.gr/jazler/tests/jazler_api.html)
-
-</td>
-<td width="50%" valign="top">
+<td width="100%" valign="top">
 
 ## 🧩 Demo
 
