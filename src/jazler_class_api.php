@@ -69,7 +69,10 @@ class jazlerClassWithAPI {
 		$values['now_playing']['time_remain'] = strtotime($this->convertToLocalServerTime($data['Event']['Song']['Expire']['@attributes']['Time'],$timezone)) - time();//remain time
 		
 		//start parse API data
-		$apiData = $this->parseCurl('https://www.greek-radios.gr/artist-info/artist-api.php?artist='.urlencode($data['Event']['Song']['Artist']['@attributes']['name']).'&song='.urlencode($data['Event']['Song']['@attributes']['title']).'&site='.urlencode($apiSite));
+		$artist = explode('-',$data['Event']['Song']['Artist']['@attributes']['name']);
+		$artist = explode(',',$artist[0]);
+		$artistname = $artist[0];
+		$apiData = $this->parseCurl('https://www.greek-radios.gr/artist-info/artist-api.php?artist='.urlencode(trim($artistname)).'&song='.urlencode($data['Event']['Song']['@attributes']['title']).'&site='.urlencode($apiSite));
 		$apiData = json_decode($apiData,true);
 		if(!isset($apiData['error'])){
 			$values['now_playing']['artist_bio'] = $apiData['biography'] ?? '';
@@ -114,7 +117,10 @@ class jazlerClassWithAPI {
 			$values['history'][$key]['start_time'] = $this->convertToLocalServerTime($value['Info']['@attributes']['StartTime'],$timezone) ?? ''; //time played
 			$values['history'][$key]['duration'] = $value['Media']['@attributes']['runTime'] ?? ''; //song duration
 			//start parse API data
-			$apiData = $this->parseCurl('https://www.greek-radios.gr/artist-info/artist-api.php?artist='.urlencode($value['Artist']['@attributes']['name']).'&song='.urlencode($value['@attributes']['title']).'&site='.urlencode($apiSite));
+			$artist = explode('-',$value['Artist']['@attributes']['name']);
+			$artist = explode(',',$artist[0]);
+			$artistname = $artist[0];
+			$apiData = $this->parseCurl('https://www.greek-radios.gr/artist-info/artist-api.php?artist='.urlencode(trim($artistname)).'&song='.urlencode($value['@attributes']['title']).'&site='.urlencode($apiSite));
 			$apiData = json_decode($apiData,true);
 			if(!isset($apiData['error'])){
 				$values['history'][$key]['artist_bio'] = $apiData['biography'] ?? '';
@@ -161,7 +167,10 @@ class jazlerClassWithAPI {
 			$values['next'][$key]['start_time'] = $this->convertToLocalServerTime($value['Info']['@attributes']['StartTime'],$timezone) ?? ''; //time played
 			$values['next'][$key]['duration'] = $value['Media']['@attributes']['runTime'] ?? ''; //song duration
 			//start parse API data
-			$apiData = $this->parseCurl('https://www.greek-radios.gr/artist-info/artist-api.php?artist='.urlencode($value['Artist']['@attributes']['name']).'&song='.urlencode($value['@attributes']['title']).'&site='.urlencode($apiSite));
+			$artist = explode('-',$value['Artist']['@attributes']['name']);
+			$artist = explode(',',$artist[0]);
+			$artistname = $artist[0];
+			$apiData = $this->parseCurl('https://www.greek-radios.gr/artist-info/artist-api.php?artist='.urlencode(trim($artistname)).'&song='.urlencode($value['@attributes']['title']).'&site='.urlencode($apiSite));
 			$apiData = json_decode($apiData,true);
 			if(!isset($apiData['error'])){
 				$values['next'][$key]['artist_bio'] = $apiData['biography'] ?? '';
@@ -199,5 +208,7 @@ class jazlerClassWithAPI {
 	}
 	
 }
+
+
 
 
