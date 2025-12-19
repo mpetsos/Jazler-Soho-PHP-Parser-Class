@@ -68,9 +68,6 @@ This PHP class reads those XML files and outputs an **array** with all the data,
 
 ---
 
-<table width="100%">
-<tr>
-<td width="100%" valign="top">
 
 ## 💻 Example Usage
 
@@ -149,10 +146,6 @@ $data = $jClass->jazlerHistoryPlay(
   $timezone
 );
 ```
-
-</td>
-</tr>
-</table>
 
 ---
 
