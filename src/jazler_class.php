@@ -8,7 +8,7 @@
 class jazlerClass {
 	
 	/**
-	/** CURL function
+	/** CURL function 
 	*/
 	public function parseCurl($url){
 		// Initialize cURL
@@ -144,5 +144,6 @@ class jazlerClass {
 	}
 	
 }
+
 
 
