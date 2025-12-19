@@ -72,49 +72,13 @@ This PHP class reads those XML files and outputs an **array** with all the data,
 <tr>
 <td width="50%" valign="top">
 
-## 💻 Παράδειγμα Χρήσης
-
-### Βασική Class
-```php
-include('../src/jazler_class.php');
-
-$timezone = 'UTC'; // Η ζώνη ώρας του server σας
-$jClass = new jazlerClass();
-
-$data = $jClass->jazlerMerge(
-  "https://yourwebsite.com/NowOnAir.xml",
-  "https://yourwebsite.com/AirPlayHistory.xml",
-  "https://yourwebsite.com/AirPlayNext.xml",
-  $timezone
-);
-```
-
-### Με API
-```php
-include('../src/jazler_class_api.php');
-
-$timezone = 'UTC';
-$jClass = new jazlerClassWithAPI();
-
-$data = $jClass->jazlerMerge(
-  "https://yourwebsite.com/NowOnAir.xml",
-  "https://yourwebsite.com/AirPlayHistory.xml",
-  "https://yourwebsite.com/AirPlayNext.xml",
-  $timezone,
-  'API_TOKEN'
-);
-```
-
-</td>
-<td width="50%" valign="top">
-
 ## 💻 Example Usage
 
-### Basic Class
+### Basic Class (all data)
 ```php
 include('../src/jazler_class.php');
 
-$timezone = 'UTC'; // Your server timezone
+$timezone = 'UTC'; // Your jazler server timezone
 $jClass = new jazlerClass();
 
 $data = $jClass->jazlerMerge(
@@ -125,11 +89,11 @@ $data = $jClass->jazlerMerge(
 );
 ```
 
-### With API
+### With API (all data)
 ```php
 include('../src/jazler_class_api.php');
 
-$timezone = 'UTC';
+$timezone = 'UTC';// Your jazler server timezone
 $jClass = new jazlerClassWithAPI();
 
 $data = $jClass->jazlerMerge(
@@ -138,6 +102,51 @@ $data = $jClass->jazlerMerge(
   "https://yourwebsite.com/AirPlayNext.xml",
   $timezone,
   'API_TOKEN'
+);
+```
+
+### Basic Class (playing now data)
+```php
+include('../src/jazler_class.php');
+
+$timezone = 'UTC'; // Your jazler server timezone
+$jClass = new jazlerClass();
+
+$data = $jClass->jazlerNowPlaying(
+  "https://yourwebsite.com/NowOnAir.xml",
+  "https://yourwebsite.com/AirPlayHistory.xml",
+  "https://yourwebsite.com/AirPlayNext.xml",
+  $timezone
+);
+```
+
+### Basic Class (coming up -next- data)
+```php
+include('../src/jazler_class.php');
+
+$timezone = 'UTC'; // Your jazler server timezone
+$jClass = new jazlerClass();
+
+$data = $jClass->jazlerNextPlay(
+  "https://yourwebsite.com/NowOnAir.xml",
+  "https://yourwebsite.com/AirPlayHistory.xml",
+  "https://yourwebsite.com/AirPlayNext.xml",
+  $timezone
+);
+```
+
+### Basic Class (played -history- data)
+```php
+include('../src/jazler_class.php');
+
+$timezone = 'UTC'; // Your jazler server timezone
+$jClass = new jazlerClass();
+
+$data = $jClass->jazlerHistoryPlay(
+  "https://yourwebsite.com/NowOnAir.xml",
+  "https://yourwebsite.com/AirPlayHistory.xml",
+  "https://yourwebsite.com/AirPlayNext.xml",
+  $timezone
 );
 ```
 
