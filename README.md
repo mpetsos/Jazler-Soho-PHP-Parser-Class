@@ -158,7 +158,7 @@ $data = $jClass->jazlerHistoryPlay(
 - [Default Class Demo](https://www.greek-radios.gr/jazler/tests/jazler.html)
 - [Default Class + Jazler Album Image](https://www.greek-radios.gr/jazler/tests/jazler_image.html)
 - [Class + API Demo](https://www.greek-radios.gr/jazler/tests/jazler_api.html)
-
+  (All demos utilize data from Ellinikosfm.com)
 </td>
 </tr>
 </table>
