@@ -156,7 +156,7 @@ $data = $jClass->jazlerHistoryPlay(
 ## 🧩 Demo
 
 - [Default Class Demo](https://www.greek-radios.gr/jazler/tests/jazler.html)
-- [DefaultClass + Jazler Album Image](https://www.greek-radios.gr/jazler/tests/jazler_image.html)
+- [Default Class + Jazler Album Image](https://www.greek-radios.gr/jazler/tests/jazler_image.html)
 - [Class + API Demo](https://www.greek-radios.gr/jazler/tests/jazler_api.html)
 
 </td>
