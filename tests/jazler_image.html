@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Now Playing - Ellinikos FM</title>
+  <title>Now Playing - With Album Image</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800 min-h-screen flex items-center justify-center p-6">
@@ -50,7 +50,7 @@
 
           <!-- Responsive album cover with Ellinikos FM fallback -->
           <img 
-            src="https://ellinikosfm.com/CurrentAlbumImage.jpg?rand=${Math.random()}" 
+            src="https://www.yourwebsite.com/CurrentAlbumImage.jpg?rand=${Math.random()}" 
             alt="Album cover" 
             onerror="this.onerror=null;
                      this.replaceWith(Object.assign(document.createElement('div'), {
@@ -135,3 +135,4 @@
 
 </body>
 </html>
+
