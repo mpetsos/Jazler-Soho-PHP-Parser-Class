@@ -111,8 +111,6 @@ $jClass = new jazlerClass();
 
 $data = $jClass->jazlerNowPlaying(
   "https://yourwebsite.com/NowOnAir.xml",
-  "https://yourwebsite.com/AirPlayHistory.xml",
-  "https://yourwebsite.com/AirPlayNext.xml",
   $timezone
 );
 ```
@@ -125,8 +123,6 @@ $timezone = 'UTC'; // Your jazler server timezone
 $jClass = new jazlerClass();
 
 $data = $jClass->jazlerNextPlay(
-  "https://yourwebsite.com/NowOnAir.xml",
-  "https://yourwebsite.com/AirPlayHistory.xml",
   "https://yourwebsite.com/AirPlayNext.xml",
   $timezone
 );
@@ -140,9 +136,7 @@ $timezone = 'UTC'; // Your jazler server timezone
 $jClass = new jazlerClass();
 
 $data = $jClass->jazlerHistoryPlay(
-  "https://yourwebsite.com/NowOnAir.xml",
   "https://yourwebsite.com/AirPlayHistory.xml",
-  "https://yourwebsite.com/AirPlayNext.xml",
   $timezone
 );
 ```
