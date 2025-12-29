@@ -1,4 +1,4 @@
-# 🎵 Jazler Soho PHP Class Parser V1.0
+# 🎵 Jazler Soho PHP Class Parser v1.0
 
 <table>
 <tr>
