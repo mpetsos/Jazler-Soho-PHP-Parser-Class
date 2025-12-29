@@ -86,21 +86,6 @@ $data = $jClass->jazlerMerge(
 );
 ```
 
-### With API (all data)
-```php
-include('../src/jazler_class_api.php');
-
-$timezone = 'UTC';// Your jazler server timezone
-$jClass = new jazlerClassWithAPI();
-
-$data = $jClass->jazlerMerge(
-  "https://yourwebsite.com/NowOnAir.xml",
-  "https://yourwebsite.com/AirPlayHistory.xml",
-  "https://yourwebsite.com/AirPlayNext.xml",
-  $timezone,
-  'API_TOKEN'
-);
-```
 
 ### Basic Class (playing now data)
 ```php
@@ -151,7 +136,6 @@ $data = $jClass->jazlerHistoryPlay(
 
 - [Default Class Demo](https://www.greek-radios.gr/jazler/tests/jazler.html)
 - [Default Class + Jazler Album Image](https://www.greek-radios.gr/jazler/tests/jazler_image.html)
-- [Class + API Demo](https://www.greek-radios.gr/jazler/tests/jazler_api.html)
 - (All demos utilize data from Ellinikosfm.com)
 </td>
 </tr>
