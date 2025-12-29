@@ -172,29 +172,6 @@ $data = $jClass->jazlerHistoryPlay(
 <tr>
 <td width="50%" valign="top">
 
-## 🔗 Πληροφορίες API
-
-Περισσότερες πληροφορίες σχετικά με το **Greek-Radios.gr API**:  
-[https://www.greek-radios.gr/api-info.php](https://www.greek-radios.gr/api-info.php)
-
-</td>
-<td width="50%" valign="top">
-
-## 🔗 API Information
-
-For more information about the **Greek-Radios.gr API**, visit:  
-[https://www.greek-radios.gr/api-info.php](https://www.greek-radios.gr/api-info.php)
-
-</td>
-</tr>
-</table>
-
----
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
 ## 🧠 To Do
 
 - Σύνδεση με άλλα API (π.χ. Last.fm API)  
