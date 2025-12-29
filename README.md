@@ -7,8 +7,7 @@
 ## 🇬🇷 Περιγραφή
 
 Πρόκειται για μία PHP class με την οποία μπορείτε να δείξετε τα δεδομένα που στέλνει η δημοφιλής εφαρμογή για ραδιοφωνικούς σταθμούς **Jazler SOHO** ([https://jazler.com/soho/](https://jazler.com/soho/)) στην ιστοσελίδα σας.  
-
-Το πακέτο περιλαμβάνει επίσης άλλη μία class η οποία χρησιμοποιεί το **API της ιστοσελίδας greek-radios.gr** για να εμφανίζει πληροφορίες για το εκάστοτε τραγούδι σχετικά με τον καλλιτέχνη ή και τους στίχους του τραγουδιού (**μόνο για Έλληνες καλλιτέχνες και τραγούδια**).  
+  
 
 </td>
 <td width="50%" valign="top">
@@ -17,7 +16,6 @@
 
 This is a **PHP class** that allows you to display data sent by the popular radio automation software **Jazler SOHO** ([https://jazler.com/soho/](https://jazler.com/soho/)) on your website.  
 
-The package also includes an additional class that uses the **Greek-Radios.gr API** to display song-related information such as the **artist** and **lyrics** (**only for Greek songs and artists**).  
 
 </td>
 </tr>
