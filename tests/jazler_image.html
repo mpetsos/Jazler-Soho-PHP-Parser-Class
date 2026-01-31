@@ -48,14 +48,14 @@
         <h2 class="text-2xl font-bold text-indigo-600 mb-4">🎵 Now Playing</h2>
         <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-5 shadow-sm">
 
-          <!-- Responsive album cover with Ellinikos FM fallback -->
+          <!-- Responsive album cover with Radio website fallback -->
           <img 
             src="https://www.yourwebsite.com/CurrentAlbumImage.jpg?rand=${Math.random()}" 
             alt="Album cover" 
             onerror="this.onerror=null;
                      this.replaceWith(Object.assign(document.createElement('div'), {
                        className: 'mx-auto flex items-center justify-center text-indigo-400 bg-indigo-100 rounded-full shadow-md mb-4 border border-indigo-100 w-36 h-36 sm:w-48 sm:h-48 lg:w-64 lg:h-64',
-                       innerHTML: '<span class=\\'font-semibold text-indigo-500\\'>Ellinikos FM</span>'
+                       innerHTML: '<span class=\\'font-semibold text-indigo-500\\'>My radio</span>'
                      }));"
             class="mx-auto w-36 h-36 
                    object-cover rounded-full shadow-md mb-4 border border-indigo-100 
@@ -135,5 +135,6 @@
 
 </body>
 </html>
+
 
 
